@@ -1,6 +1,6 @@
-FROM ruby:2.7
+FROM ruby:3.1
 
-RUN gem install bundler:2.2.16
+RUN gem install bundler:2.2.33
 
 WORKDIR /opt/belvo
 

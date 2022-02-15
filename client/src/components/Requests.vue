@@ -111,16 +111,12 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="list-item-action col"
-              >
+              <div class="list-item-action col">
                 <b-button type="primary" :fluid="false" text="Send request" @clicked="retrieveTransactions()" />
               </div>
             </div>
             <div class="request-response" v-if="this.transactions">
-              <div
-                class="row response-header pb-s"
-              >
+              <div class="row response-header pb-s">
                 <div class="text-medium-14 col">
                   Name
                 </div>
@@ -146,9 +142,7 @@
           </div>
           <div class="list-item">
             <div class="row py-m flex-between">
-              <div
-                class="two-list-item-action__left-item col request-title"
-              >
+              <div class="two-list-item-action__left-item col request-title">
                 <div class="text-regular-14 request-type post mr-l">
                   POST
                 </div>
@@ -168,16 +162,12 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="list-item-action col"
-              >
+              <div class="list-item-action col">
                 <b-button type="primary" :fluid="false" text="Send request" @clicked="retrieveBalances()" />
               </div>
             </div>
             <div class="request-response" v-if="this.balances">
-              <div
-                class="row response-header pb-s"
-              >
+              <div class="row response-header pb-s">
                 <div class="text-medium-14 col">
                   Name
                 </div>
@@ -203,9 +193,7 @@
           </div>
           <div class="list-item">
             <div class="row py-m flex-between">
-              <div
-                class="two-list-item-action__left-item col request-title"
-              >
+              <div class="two-list-item-action__left-item col request-title">
                 <div class="text-regular-14 request-type post mr-l">
                   POST
                 </div>
@@ -225,16 +213,12 @@
                   </div>
                 </div>
               </div>
-              <div
-                class="list-item-action col"
-              >
+              <div class="list-item-action col">
                 <b-button type="primary" :fluid="false" text="Send request" @clicked="retrieveOwners()" />
               </div>
             </div>
             <div class="request-response" v-if="this.owners">
-              <div
-                class="row response-header pb-s"
-              >
+              <div class="row response-header pb-s">
                 <div class="text-medium-14 col">
                   Name
                 </div>

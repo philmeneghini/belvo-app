@@ -46,8 +46,19 @@ def catch_all(path):
 # https://developers.belvo.co/docs/connect-widget#section--3-generate-an-access_token-
 @app.route("/get_token", methods=["GET"])
 def get_token():
+    widget = {
+        "branding": {
+          "company_icon": "https://mysite.com/icon.svg",
+          "company_logo": "https://mysite.com/logo.svg",
+          "company_name": "ACME",
+          "company_benefit_header": "Faster approvals",
+          "company_benefit_content": "Using Belvo cuts down on your loan approval time by up to 15 days.",
+          "opportunity_loss": "It can take up to 20 days to evaluate your request using traditional methods."
+        }
+    }
+    scopes = "read_institutions,write_links,read_links"
     try:
-        response = client.WidgetToken.create()
+        response = client.WidgetToken.create(widget=widget, scopes=scopes)
     except RequestError as e:
         return jsonify(format_error(e))
 

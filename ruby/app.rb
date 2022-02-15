@@ -12,6 +12,13 @@ BELVO_SECRET_PASSWORD = ENV['BELVO_SECRET_PASSWORD']
 # Use `production` to go live
 # Use `development` to test with real data
 BELVO_ENV = ENV['BELVO_ENV']
+# Widget branding variables
+COMPANY_ICON_URL = ENV['COMPANY_ICON_URL']
+COMPANY_LOGO_URL = ENV['COMPANY_LOGO_URL']
+COMPANY_NAME = ENV['COMPANY_NAME']
+COMPANY_BENEFIT_HEADER = ENV['COMPANY_BENEFIT_HEADER']
+COMPANY_BENEFIT_CONTENT = ENV['COMPANY_BENEFIT_CONTENT']
+COMPANY_OPPORTUNITY_LOSS = ENV['COMPANY_OPPORTUNITY_LOSS']
 
 if BELVO_ENV == 'production'
   BELVO_ENV_URL = 'https://api.belvo.com'
@@ -33,6 +40,7 @@ set :bind, '0.0.0.0'
 options "*" do
   response.headers["Allow"] = "HEAD,GET,PUT,POST,DELETE,OPTIONS"
   response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept"
+  response.headers['Access-Control-Allow-Origin'] = '*'
 
   200
 end
@@ -55,7 +63,18 @@ end
 # Request an access token to be used when loading the Widget
 # https://developers.belvo.co/docs/connect-widget#section--3-generate-an-access_token-
 get '/get_token' do
-  response = belvo.widget_token.create
+  widget = {
+      branding: {
+        company_icon: COMPANY_ICON_URL,
+        company_logo: COMPANY_LOGO_URL,
+        company_name: COMPANY_NAME,
+        company_benefit_header: COMPANY_BENEFIT_HEADER,
+        company_benefit_content: COMPANY_BENEFIT_CONTENT,
+        opportunity_loss: COMPANY_OPPORTUNITY_LOSS
+      }
+  }
+  options = { scopes: 'read_institutions,write_links,read_links', widget: widget }
+  response = belvo.widget_token.create(options: options)
   pretty_print_response(response)
   content_type :json
   response.to_json
