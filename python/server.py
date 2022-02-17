@@ -16,6 +16,14 @@ BELVO_SECRET_PASSWORD = os.getenv("BELVO_SECRET_PASSWORD")
 # Use `development` to test with real data
 BELVO_ENV = os.getenv("BELVO_ENV", "sandbox")
 
+# Widget branding variables
+COMPANY_ICON_URL = os.getenv("COMPANY_ICON_URL")
+COMPANY_LOGO_URL = os.getenv("COMPANY_LOGO_URL")
+COMPANY_NAME = os.getenv("COMPANY_NAME")
+COMPANY_BENEFIT_HEADER = os.getenv("COMPANY_BENEFIT_HEADER")
+COMPANY_BENEFIT_CONTENT = os.getenv("COMPANY_BENEFIT_CONTENT")
+COMPANY_OPPORTUNITY_LOSS = os.getenv("COMPANY_OPPORTUNITY_LOSS")
+
 if BELVO_ENV == "production":
     BELVO_ENV_URL = "https://api.belvo.com"
 elif BELVO_ENV == "development":
@@ -48,12 +56,12 @@ def catch_all(path):
 def get_token():
     widget = {
         "branding": {
-          "company_icon": "https://mysite.com/icon.svg",
-          "company_logo": "https://mysite.com/logo.svg",
-          "company_name": "ACME",
-          "company_benefit_header": "Faster approvals",
-          "company_benefit_content": "Using Belvo cuts down on your loan approval time by up to 15 days.",
-          "opportunity_loss": "It can take up to 20 days to evaluate your request using traditional methods."
+          "company_icon": COMPANY_ICON_URL,
+          "company_logo": COMPANY_LOGO_URL,
+          "company_name": COMPANY_NAME,
+          "company_benefit_header": COMPANY_BENEFIT_HEADER,
+          "company_benefit_content": COMPANY_BENEFIT_CONTENT,
+          "opportunity_loss": COMPANY_OPPORTUNITY_LOSS
         }
     }
     scopes = "read_institutions,write_links,read_links"
