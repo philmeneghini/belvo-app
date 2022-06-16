@@ -31,11 +31,11 @@ COMPANY_BENEFIT_CONTENT = process.env.COMPANY_BENEFIT_CONTENT
 COMPANY_OPPORTUNITY_LOSS = process.env.COMPANY_OPPORTUNITY_LOSS
 
 if (BELVO_ENV == 'production') {
-  BELVO_ENV_URL = 'https://api.belvo.com'
+    BELVO_ENV_URL = 'https://api.belvo.com'
 } else if (BELVO_ENV == 'development') {
-  BELVO_ENV_URL = 'https://development.belvo.com'
+    BELVO_ENV_URL = 'https://development.belvo.com'
 } else {
-  BELVO_ENV_URL = 'https://sandbox.belvo.com'
+    BELVO_ENV_URL = 'https://sandbox.belvo.com'
 }
 
 const client = new belvo(
@@ -48,31 +48,31 @@ const client = new belvo(
 // https://developers.belvo.co/docs/connect-widget#section--3-generate-an-access_token-
 app.get("/get_token", (req, res, next) => {
 
-// Widget branding
-// https://developers.belvo.com/docs/widget-branding-and-customization
-const widget = {
-    branding: {
-      company_icon: COMPANY_ICON_URL,
-      company_logo: COMPANY_LOGO_URL,
-      company_name: COMPANY_NAME,
-      company_benefit_header: COMPANY_BENEFIT_HEADER,
-      company_benefit_content: COMPANY_BENEFIT_CONTENT,
-      opportunity_loss: COMPANY_OPPORTUNITY_LOSS
+    // Widget branding
+    // https://developers.belvo.com/docs/widget-branding-and-customization
+    const widget = {
+        branding: {
+            company_icon: COMPANY_ICON_URL,
+            company_logo: COMPANY_LOGO_URL,
+            company_name: COMPANY_NAME,
+            company_benefit_header: COMPANY_BENEFIT_HEADER,
+            company_benefit_content: COMPANY_BENEFIT_CONTENT,
+            opportunity_loss: COMPANY_OPPORTUNITY_LOSS
+        }
     }
-}
-const options = { scopes: 'read_institutions,write_links,read_links', widget: widget };
-client.connect()
-    .then(() => {
-        client.widgetToken.create(options)
-            .then((response) => {
-                res.json(response);
-            })
-            .catch((error) => {
-                res.status(500).send({
-                    message: error.message
+    const options = { scopes: 'read_institutions,write_links,read_links', widget: widget };
+    client.connect()
+        .then(() => {
+            client.widgetToken.create(options)
+                .then((response) => {
+                    res.json(response);
+                })
+                .catch((error) => {
+                    res.status(500).send({
+                        message: error.message
+                    });
                 });
-            });
-    });
+        });
 });
 
 app.post("/accounts", (req, res, next) => {
@@ -93,7 +93,7 @@ app.post("/accounts", (req, res, next) => {
 
 app.post("/transactions", (req, res, next) => {
     const { link_id } = req.body;
-    const date_from = moment().subtract(30, "days").format('YYYY-MM-DD');
+    const date_from = moment().subtract(150, "days").format('YYYY-MM-DD');
     const date_to = moment().format('YYYY-MM-DD');
 
     client.connect()
@@ -114,7 +114,7 @@ app.post("/transactions", (req, res, next) => {
 
 app.post("/balances", (req, res, next) => {
     const { link_id } = req.body;
-    const date_from = moment().subtract(30, "days").format('YYYY-MM-DD');
+    const date_from = moment().subtract(150, "days").format('YYYY-MM-DD');
     const date_to = moment().format('YYYY-MM-DD');
 
     client.connect()

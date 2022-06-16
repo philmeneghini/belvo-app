@@ -3,7 +3,7 @@
     <div class="row pb-xl">
       <div class="col">
         <div class="text-regular-20 pb-m">
-          An example application that outlines an end-to-end integration with Belvo
+          Testing belvo app and widget
         </div>
         <div class="divider" />
         <div class="text-regular-16 pt-m">

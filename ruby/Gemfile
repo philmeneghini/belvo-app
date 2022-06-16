@@ -1,7 +1,0 @@
-ruby '3.1'
-source 'https://rubygems.org'
-
-gem 'belvo', '>=0.19.3'
-gem 'sinatra'
-gem 'sinatra-cross_origin'
-gem 'thin'
