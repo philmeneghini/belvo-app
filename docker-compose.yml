@@ -14,8 +14,8 @@ services:
 
   server:
     build:
-      context: ${CONTEXT}
-    image: belvo/quickstart:${CONTEXT}
+      context: node
+    image: belvo/quickstart:node
     environment:
       BELVO_SECRET_ID: ${BELVO_SECRET_ID}
       BELVO_SECRET_PASSWORD: ${BELVO_SECRET_PASSWORD}
